@@ -13,7 +13,8 @@
       </ul>
     </div>
   <% end %>
- 
+ <% if user_signed_in? %>
+
   <p>
     <%= f.label :title %><br>
     <%= f.text_field :title, placeholder: "Pakkende titel" %>
@@ -31,5 +32,6 @@
   <p>
     <%= f.submit %>
   </p>
- 
+  
+<% end %>
 <% end %>
