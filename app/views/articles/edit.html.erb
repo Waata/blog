@@ -1,0 +1,7 @@
+
+<h1>Edit article</h1>
+ <%= cl_image_tag @article.photo, height: 300, width: 400, crop: :fill %>
+ 
+<%= render 'form' %>
+ 
+<%= link_to 'Back', articles_path %>

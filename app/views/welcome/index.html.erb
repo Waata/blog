@@ -1,0 +1,40 @@
+<h1>Welcome#index</h1>
+<p>Find me in app/views/welcome/index.html.erb</p>
+<h1>Hello, Rails!</h1>
+<% if user_signed_in? %>
+<li>
+  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+</li>
+<% else %>
+<li>
+  <%= link_to('Login', new_user_session_path)  %>  
+</li>
+<% end %>
+
+<%= link_to 'My Blog', controller: 'articles' %>
+
+<%= link_to 'New article', new_article_path %>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+    <th colspan="3"></th>
+
+  
+  <% @articles.each do |article| %>
+  <tr>
+    <td><%= article.title %></td>
+    <td><%= article.text %></td>
+     </tr>
+    <td><%= cl_image_tag article.photo, height: 300, width: 400, crop: :fill %></td>
+    <td><%= link_to 'Show', article_path(article) %></td>
+    <td><%= link_to 'Edit', edit_article_path(article) %></td>
+    <td><%= link_to 'Destroy', article_path(article),
+      method: :delete,
+      data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+    <% end %>
+  </table>
+
+
