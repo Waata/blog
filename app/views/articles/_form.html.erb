@@ -1,37 +1,142 @@
-<%= form_for @article do |f| %>
- 
-  <% if @article.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@article.errors.count, "error") %> prohibited
-        this article from being saved:
-      </h2>
-      <ul>
-        <% @article.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
+<div id="canvas">
+  <div id="mobileNav" class="">
+    <div class="wrapper">
+      <nav class="main-nav mobileNav"><ul>
+        <li class="page-collection active-link">  
+          <a href="/">Agenda</a>
+        </li>
+        <li class="index-collection folder">
+          <a href="/kunstenaars/">Kunstenaars</a>
+        </li>
+        <li class="index-collection folder">
+          <a href="/projecten/">Projecten</a>
+        </li>
+        <li class="index-collection folder">
+          <a href="/studios/">Over MILK</a>
+        </li>
       </ul>
-    </div>
-  <% end %>
- <% if user_signed_in? %>
+    </nav>
+  </div>
+</div>
+<div id="mobileMenuLink"><a>Menu</a></div>
+<header id="header" class="clear">
+  <div id="upper-logo">
+    <h1 class="logo" data-content-field="site-title">
+      <a href="/"><h1 style="font-size: -webkit-xxx-large;">EVA</h1></a>
+    </h1>
+  </div>
+  <div id="topNav">
+    <nav class="main-nav" data-content-field="navigation">
+      <ul>
+        <li class="page-collection active-link">
+          <%= link_to 'photo', controller: 'articles' %>
+        </li>
+        <li class="index-collection folder">
+          <a href="/illustrations/">illustrations</a>
+        </li>
+        <li class="index-collection folder">
+          <a href="/projects/">projects</a>
+        </li>
+        <li class="index-collection folder">
+          <a href="/about">about EVA</a>
+        </li>
+        <% if user_signed_in? %>
+        <li>          
+          <%= link_to 'New article', new_article_path %>
+          <% if user_signed_in? %>
+          <li>
+            <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+          </li>
+          <% else %>
+          <li>
+            <%= link_to('Login', new_user_session_path)  %>  
+          </li>
+          <% end %>
+          <% end %>
+        </li>
+      </ul>
+      <div class="page-divider"></div>
+    </nav>
+  </div>
+</header>
 
-  <p>
-    <%= f.label :title %><br>
-    <%= f.text_field :title, placeholder: "Pakkende titel" %>
-  </p>
- 
-  <%= f.file_field :photo  %>
-  <%= f.hidden_field :photo_cache %>
+<div class="page-divider top-divider"></div>
+<section id="page" class="clear" role="main" data-content-field="main-content" data-edit-main-image="Banner" >
+  <div class="wks-layout wks-grid-12 columns-12">
+    <div class="row wks-row">
+      <div class="col wks-col-12 span-12">
+        <div class="wks-block horizontalrule-block wks-block-horizontalrule">
+          <div class="wks-block-content"><hr />
+          </div>
+        </div>
+        <div class="row wks-row">
+          <div class="col wks-col-6 span-6">
+            <div class="wks-block image-block wks-block-image">
+              <div class="wks-block-content">
+                <div class="image-block-outer-wrapper layout-caption-hidden ">
+                  <div class="intrinsic" style="max-width:1500.0px;">
+                   <%= cl_image_tag @article.photo, height: 300, width: 400, crop: :fill %>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+         <div class="col wks-col-6 span-6">
+          <div class="wks-block html-block wks-block-html" data-block-type="2" id="block-yui_3_17_2_2_1471532102398_88788">
+            <div class="wks-block-content">
+              <h1>About</h1>
+              <%= form_for(@article) do |f| %>
+              <% if @article.errors.any? %>
 
-  <p>
+              <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
+              <ul>
+                <% article.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+                <% end %>
+              </ul>
 
-    <%= f.label :description %><br>
-    <%= f.text_area :text, placeholder: "Interessant verhaaltje"  %>
-  </p>
- 
-  <p>
-    <%= f.submit %>
-  </p>
-  
-<% end %>
-<% end %>
+              <% end %>
+              <p>
+              <%= f.label :title      %>
+              <%= f.text_field :title %>
+              </p>
+              <p>
+              <%= f.label :description %>
+              <%= f.text_area :description %>
+              <p>
+              <div>
+              </div>
+                <%= f.collection_select :category_id, Category.all, :id, :name, :prompt => "Select a Category" %>
+                  <!--     or create one:
+                  <%= f.text_field :new_category_name %> -->
+                </p>
+                <p>
+                <%= f.file_field :photo  %>
+                <%= f.hidden_field :photo_cache %>
+                </p>
+                <br>
+                <br>
+                <div>
+                </div>
+                <p>
+                <%= f.submit %>
+                
+                <% end %>
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="wks-block horizontalrule-block wks-block-horizontalrule">
+        <div class="wks-block-content"><hr>
+        </div>
+      </div>
+
+
+
+
+
+
+
+

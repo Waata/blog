@@ -31,10 +31,10 @@
     <nav class="main-nav" data-content-field="navigation">
       <ul>
         <li class="page-collection active-link">
-          <%= link_to 'photos', controller: 'articles' %>
+          <%= link_to 'photo', controller: 'articles' %>
         </li>
         <li class="index-collection folder">
-          <a href="/illustrations">illustrations</a>
+          <a href="/illustrations/">illustrations</a>
         </li>
         <li class="index-collection folder">
           <a href="/projects/">projects</a>
@@ -95,9 +95,10 @@
           <div class="wks-block html-block wks-block-html">
             <div class="wks-block-content">
               <h2><%= link_to article.title, article %></h2>
-        
+              
+              <p><%= article.category.name %> </p>
                 
-                <h4><%= article.description %></h4>
+                <h3><%= article.description %></h3>
                 <% if user_signed_in? %>
                 <div></div>
                 <td><%= link_to 'Edit', edit_article_path(article) %></td>

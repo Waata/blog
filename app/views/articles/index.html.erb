@@ -1,29 +1,160 @@
 
-<h1>Listing Articles</h1>
+<div id="canvas">
+  <div id="mobileNav" class="">
+    <div class="wrapper">
+      <nav class="main-nav mobileNav"><ul>
+        <li class="page-collection active-link">  
+          <a href="/">Agenda</a>
+        </li>
+        <li class="index-collection folder">
+          <a href="/kunstenaars/">Kunstenaars</a>
+        </li>
+        <li class="index-collection folder">
+          <a href="/projecten/">Projecten</a>
+        </li>
+        <li class="index-collection folder">
+          <a href="/studios/">Over MILK</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
 
-<table>
-  <tr>
-
-    <th colspan="3"></th>
-  </tr>
- 
-  <% @articles.each do |article| %>
-    <tr>
-<!--       <td><%= article.title %></td>
-      <td><%= article.text %></td> -->
-      <td><%= cl_image_tag article.photo, height: 300, width: 400, crop: :fill %></td>
+<div id="mobileMenuLink"><a>Menu</a></div>
+<header id="header" class="clear">
+  <div id="upper-logo">
+    <h1 class="logo" data-content-field="site-title">
+      <a href="/"><h1 style="font-size: -webkit-xxx-large;">EVA</h1></a>
+    </h1>
+  </div>
+  <div id="topNav">
+    <nav class="main-nav" data-content-field="navigation">
+      <ul>
+        <li class="page-collection active-link">
+          <%= link_to 'photo', controller: 'articles' %>
+        </li>
+        <li class="index-collection folder">
+          <a href="/illustrations/">illustrations</a>
+        </li>
+        <li class="index-collection folder">
+          <a href="/projects/">projects</a>
+        </li>
+        <li class="index-collection folder">
+          <a href="/about">about</a>
+        </li>
+        <% if user_signed_in? %>
+        <li>          
+          <%= link_to 'New article', new_article_path %>
           <% if user_signed_in? %>
-      <%= link_to 'New article', new_article_path %>
-      <td><%= link_to 'Edit', edit_article_path(article) %></td>
-      <td><%= link_to 'Destroy', article_path(article),
-              method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
+          <li>
+            <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+          </li>
+          <% else %>
+          <li>
+            <%= link_to('Login', new_user_session_path)  %>  
+          </li>
+          <% end %>
+          <% end %>
+        </li>
+      </ul>
+      <div class="page-divider"></div>
+    </nav>
+  </div>
+</header>
+
+<div class="page-divider top-divider"></div>
+<section id="page" class="clear" role="main" data-content-field="main-content" data-edit-main-image="Banner" >
+  <div class="wks-layout wks-grid-12 columns-12">
+    <div class="row wks-row">
+      <div class="col wks-col-12 span-12">
+        <div class="wks-block horizontalrule-block wks-block-horizontalrule">
+          <div class="wks-block-content"><hr />
+          </div>
+        </div>
+
+        <% @articles.each do |article| %>
+
+      <div class="row wks-row">
+          <div class="col wks-col-6 span-6">
+            <div class="wks-block image-block wks-block-image">
+              <div class="wks-block-content">
+
+                <div class="image-block-outer-wrapper layout-caption-hidden ">
+                  <div class="intrinsic" style="max-width:1500.0px;">
+                    <div style="padding-bottom:74.666672%;" class="image-block-wrapper   has-aspect-ratio" <%= link_to 'Show', article_path(article) %> >
+                       <%= cl_image_tag article.photo %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col wks-col-6 span-6">
+              <div class="wks-block html-block wks-block-html" data-block-type="2" id="block-yui_3_17_2_2_1471532102398_88788">
+                <div class="wks-block-content">
+                  <h2><%= link_to article.title, article %></h2>
+                  
+                  <p><%= article.description %></p>
+
+                  <% if user_signed_in? %>
+                 
+                  <td><%= link_to 'Edit', edit_article_path(article) %></td>
+                  <td><%= link_to 'Destroy', article_path(article),
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' } %></td>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="wks-block horizontalrule-block wks-block-horizontalrule">
+              <div class="wks-block-content"><hr>
+              </div>
+            </div>
+            <% end %>
+            <!-- 
+            <h1>Welcome#index</h1>
+            <p>Find me in app/views/welcome/index.html.erb</p>
+            <h1>Hello, Rails!</h1>
+            <% if user_signed_in? %>
+            <li>
+              <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+            </li>
+            <% else %>
+            <li>
+              <%= link_to('Login', new_user_session_path)  %>  
+            </li>
+            <% end %>
+
+            <%= link_to 'My Blog', controller: 'articles' %>
+            <% if user_signed_in? %>
+            <%= link_to 'New article', new_article_path %>
+            <% end %>
+
+            <table>
+              <tr>
+                <th>Title</th>
+                <th>Text</th>
+                <th colspan="3"></th>
+
+
+                <% @articles.each do |article| %>
+                <tr>
+                  <td><%= article.title %></td>
+                  <td><%= article.description %></td>
+                </tr>
+                <td><%= cl_image_tag article.photo, height: 300, width: 400, crop: :fill %></td>
+                <% if user_signed_in? %>
+                <td><%= link_to 'Show', article_path(article) %></td>
+                <td><%= link_to 'Edit', edit_article_path(article) %></td>
+                <td><%= link_to 'Destroy', article_path(article),
+                  method: :delete,
+                  data: { confirm: 'Are you sure?' } %></td>
                   <% end %>
-    </tr>
-  <td><%= link_to 'Show', article_path(article) %></td>
-  <% end %>
+                  <td><%= link_to 'Show', article_path(article) %></td>
+                </tr>
+                <% end %>
+              </table>
 
 
-</table>
-<%= link_to 'Back', root_path %>
-
+ -->

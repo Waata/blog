@@ -1,0 +1,264 @@
+
+<div id="canvas">
+  <div id="mobileNav" class="">
+    <div class="wrapper">
+      <nav class="main-nav mobileNav"><ul>
+        <li class="page-collection active-link">  
+          <a href="/">Agenda</a>
+        </li>
+        <li class="index-collection folder">
+          <a href="/kunstenaars/">Kunstenaars</a>
+        </li>
+        <li class="index-collection folder">
+          <a href="/projecten/">Projecten</a>
+        </li>
+        <li class="index-collection folder">
+          <a href="/studios/">Over MILK</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<div id="mobileMenuLink"><a>Menu</a></div>
+<header id="header" class="clear">
+  <div id="upper-logo">
+    <h1 class="logo" data-content-field="site-title">
+      <a href="/"><h1 style="font-size: -webkit-xxx-large;">EVA</h1></a>
+    </h1>
+  </div>
+  <div id="topNav">
+    <nav class="main-nav" data-content-field="navigation">
+      <ul>
+        <li class="page-collection active-link">
+          <%= link_to 'photos', controller: 'articles' %>
+        </li>
+        <li class="index-collection folder">
+          <%= link_to 'illustrations', controller: 'articles' %>      
+        </li>
+        <li class="index-collection folder">
+          <%= link_to 'projects', controller: 'articles' %>
+        </li>
+        <li class="index-collection folder">
+          <a href="/about">about EVA</a>
+        </li>
+        <% if user_signed_in? %>
+        <li>          
+          <%= link_to 'New article', new_article_path %>
+          <% if user_signed_in? %>
+          <li>
+            <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+          </li>
+          <% else %>
+          <li>
+            <%= link_to('Login', new_user_session_path)  %>  
+          </li>
+          <% end %>
+          <% end %>
+        </li>
+      </ul>
+      <div class="page-divider"></div>
+    </nav>
+  </div>
+</header>
+
+<div class="page-divider top-divider"></div>
+<section id="page" class="clear" role="main" data-content-field="main-content" data-edit-main-image="Banner" >
+  <div class="wks-layout wks-grid-12 columns-12">
+    <div class="row wks-row">
+      <div class="col wks-col-12 span-12">
+        <div class="wks-block horizontalrule-block wks-block-horizontalrule">
+          <div class="wks-block-content"><hr />
+          </div>
+        </div>
+
+        <% @articles.each do |article| %>
+        
+
+        <div class="row wks-row">
+          <div class="col wks-col-6 span-6">
+            <div class="wks-block image-block wks-block-image">
+              <div class="wks-block-content">
+                <div class="image-block-outer-wrapper layout-caption-hidden ">
+                  <div class="intrinsic" style="max-width:1500.0px;">
+                    <div style="padding-bottom:74.666672%;" class="image-block-wrapper   has-aspect-ratio" >
+
+                     <%= cl_image_tag article.photo %>
+
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+         <div class="col wks-col-6 span-6">
+          <div class="wks-block html-block wks-block-html">
+            <div class="wks-block-content">
+              <h2><%= link_to article.title, article %></h2>
+              
+              
+
+              <h3><%= article.description %></h3>
+              <% if user_signed_in? %>
+              <div></div>
+              <td><%= link_to 'Edit', edit_article_path(article) %></td>
+              <td><%= link_to 'Destroy', article_path(article),
+                method: :delete,
+                data: { confirm: 'Weet u het zeker Mevrouw van Imhoff' } %></td>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="wks-block horizontalrule-block wks-block-horizontalrule">
+          <div class="wks-block-content"><hr>
+          </div>
+        </div>
+        <% end %>
+
+          <div class="page-divider top-divider"></div>
+
+          <section id="page" class="clear" role="main" data-content-field="main-content" data-collection-id="52fba4a2e4b00527f302741d" data-collection-id="52fba4a2e4b00527f302741d" data-edit-main-image="Banner" >
+
+            <!-- // CATEGORY NAV -->
+
+
+            <div id="projectPages" data-collection-id="">
+
+
+              <div class="project page-project" data-url="/2015-1/" >
+
+                <!-- Will be fetched on-demand -->
+
+              </div>
+
+              <div class="project page-project" data-url="/2015/" >
+
+                <!-- Will be fetched on-demand -->
+
+              </div>
+
+              <div class="project page-project" data-url="/2014/" >
+
+                <!-- Will be fetched on-demand -->
+
+              </div>
+
+              <div class="project page-project" data-url="/2013/" >
+
+                <!-- Will be fetched on-demand -->
+
+              </div>
+
+              <div class="project page-project" data-url="/2012/" >
+
+                <!-- Will be fetched on-demand -->
+
+              </div>
+
+
+
+              <div class="project-controls">
+                <div>
+                  <div id="projectNav"><span class="prev-project">prev</span> / <span class="next-project">next</span></div>
+                  <a href="#">Back to Kunstenaars</a>
+                </div>
+              </div>
+
+            </div>
+
+            <div id="projectThumbs">
+              <div class="wrapper" data-collection-id="52fba4a2e4b00527f302741d">
+
+
+
+                <a class="project " href="/2015-1/" >
+                  <div>
+                    <div class="project-image"><div class="intrinsic"><div class="content-fill">
+                      <img data-src="https://static1.squarespace.com/static/52fa52a8e4b09494e2000280/t/56d5b97fe32140fc7fd4f988/1456847232466/margriet2.jpg" data-image="https://static1.squarespace.com/static/52fa52a8e4b09494e2000280/t/56d5b97fe32140fc7fd4f988/1456847232466/margriet2.jpg" data-image-dimensions="854x570" data-image-focal-point="0.5,0.5" alt="margriet2.jpg"  data-load="false"/>
+                    </div></div><div class="project-item-count">0</div></div>
+                    <div class="project-title">2016</div>
+                  </div>
+                </a>
+
+
+
+                <a class="project " href="/2015/" >
+                  <div>
+                    <div class="project-image"><div class="intrinsic"><div class="content-fill"><img data-src="https://static1.squarespace.com/static/52fa52a8e4b09494e2000280/t/56d5b93ed51cd46806c07218/1456847167200/merel.jpg" data-image="https://static1.squarespace.com/static/52fa52a8e4b09494e2000280/t/56d5b93ed51cd46806c07218/1456847167200/merel.jpg" data-image-dimensions="960x639" data-image-focal-point="0.5,0.5" alt="merel.jpg"  data-load="false"/></div></div><div class="project-item-count">0</div></div>
+                    <div class="project-title">2015</div>
+                  </div>
+                </a>
+
+
+
+                <a class="project " href="/2014/" >
+                  <div>
+                    <div class="project-image"><div class="intrinsic"><div class="content-fill"><img data-src="https://static1.squarespace.com/static/52fa52a8e4b09494e2000280/t/53277c4de4b0e5a942eedb40/1395104892756/jan2.png" data-image="https://static1.squarespace.com/static/52fa52a8e4b09494e2000280/t/53277c4de4b0e5a942eedb40/1395104892756/jan2.png" data-image-dimensions="440x373" data-image-focal-point="0.5,0.5" alt="jan2.png"  data-load="false"/></div></div><div class="project-item-count">0</div></div>
+                    <div class="project-title">2014</div>
+                  </div>
+                </a>
+
+
+
+                <a class="project " href="/2013/" >
+                  <div>
+                    <div class="project-image"><div class="intrinsic"><div class="content-fill"><img data-src="https://static1.squarespace.com/static/52fa52a8e4b09494e2000280/t/53279a04e4b0bc54fcdba552/1395181968230/DSC05622.JPG" data-image="https://static1.squarespace.com/static/52fa52a8e4b09494e2000280/t/53279a04e4b0bc54fcdba552/1395181968230/DSC05622.JPG" data-image-dimensions="1500x1500" data-image-focal-point="0.5,0.5" alt="DSC05622.JPG"  data-load="false"/></div></div><div class="project-item-count">0</div></div>
+                    <div class="project-title">2013</div>
+                  </div>
+                </a>
+
+
+
+                <a class="project " href="/2012/" >
+                  <div>
+                    <div class="project-image"><div class="intrinsic"><div class="content-fill"><img data-src="https://static1.squarespace.com/static/52fa52a8e4b09494e2000280/t/5322e1e5e4b08f966012a839/1394795034890/roos2.jpg" data-image="https://static1.squarespace.com/static/52fa52a8e4b09494e2000280/t/5322e1e5e4b08f966012a839/1394795034890/roos2.jpg" data-image-dimensions="747x747" data-image-focal-point="0.5,0.5" alt="roos2.jpg"  data-load="false"/></div></div><div class="project-item-count">0</div></div>
+                    <div class="project-title">2012</div>
+                  </div>
+                </a>
+
+
+
+              </div>
+              <div class="hidden">
+
+
+
+
+
+
+
+
+
+
+
+
+
+              </div>
+            </div>
+
+          </section>
+
+          <div class="sqs-layout sqs-grid-12 columns-12 empty" data-layout-label="Kunstenaars Footer Content" data-type="block-field" id="collection-52fba4a2e4b00527f302741d"><div class="row sqs-row"><div class="col sqs-col-12 span-12"></div></div></div>
+
+          <!-- <div class="page-divider bottom-divider"></div> -->
+
+          <div class="info-footer-wrapper clear">
+            <div class="info-footer">
+              <div class="sqs-layout sqs-grid-12 columns-12 empty" data-layout-label="Info Footer Content" data-type="block-field" data-updated-on="1414587847269" id="infoFooterBlock"><div class="row sqs-row"><div class="col sqs-col-12 span-12"></div></div></div>
+
+
+
+            </div>
+          </div>
+
+          <footer id="footer" class="clear">
+            <div class="sqs-layout sqs-grid-12 columns-12 empty" data-layout-label="Footer Content" data-type="block-field" data-updated-on="1395180000637" id="footerBlock"><div class="row sqs-row"><div class="col sqs-col-12 span-12"></div></div></div>
+          </footer>
+
+        </div>
+
+        <div></div>
+
+        <script type="text/javascript" data-sqs-type="imageloader-bootstraper">(function() {if(window.ImageLoader) { window.ImageLoader.bootstrap(); }})();</script>
+        <script>Squarespace.afterBodyLoad(Y);</script>
