@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 20161003081403) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "article_categories", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -24,7 +27,7 @@ ActiveRecord::Schema.define(version: 20161003081403) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "photo"
-    t.index ["category_id"], name: "index_articles_on_category_id"
+    t.index ["category_id"], name: "index_articles_on_category_id", using: :btree
   end
 
   create_table "categories", force: :cascade do |t|
@@ -46,8 +49,9 @@ ActiveRecord::Schema.define(version: 20161003081403) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "articles", "categories"
 end
